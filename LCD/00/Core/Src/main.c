@@ -86,18 +86,22 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+	u8 aa[100];
+	double test = 321313.1415926;
+	
 	u8 x=0;
 	u8 lcd_id[12];						//存放LCD ID字符串
 	delay_init(72);               		//初始化延时函数
  	LCD_Init();           				//初始化LCD FSMC接口
 	POINT_COLOR=RED;     				//画笔颜色：红色
-	     ((char*)lcd_id,"LCD ID:%04X",lcddev.id);//将LCD ID打印到lcd_id数组。
+	sprintf((char*)lcd_id,"LCD ID:%04X",lcddev.id);//将LCD ID打印到lcd_id数组。
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+		sprintf((char*)aa,"%f",test);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -121,7 +125,9 @@ int main(void)
 		LCD_ShowString(30,70,200,16,16,"TFTLCD TEST");
 		LCD_ShowString(30,90,200,16,16,"ATOM@ALIENTEK");
  		LCD_ShowString(30,110,200,16,16,lcd_id);		//显示LCD ID	      					 
-		LCD_ShowString(30,130,200,12,12,"2019/9/27");	      					 
+		LCD_ShowString(30,130,200,12,12,"2019/9/27");	 
+ 		LCD_ShowString(30,150,800,16,16,aa);		//显示LCD ID	      					 
+		
 		x++;
 //		if(x==12)x=0;
 //		LED0=!LED0;	 
